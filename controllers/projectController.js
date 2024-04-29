@@ -1,4 +1,4 @@
-import { getProjectByIDModel, getProjectsModel, getProjectsByUserModel, postProjectModel, updateProjectModel, deleteProjectModel } from '../models/projectModel.js';
+import { generateShareLink, getProjectByIDModel, getProjectsModel, getProjectsByUserModel, postProjectModel, updateProjectModel, deleteProjectModel } from '../models/projectModel.js';
 import { PostProjectJoiSchema, PutProjectJoiSchema } from '../shemas/project.js';
 
 const getProjectByIDController = async (req, res) => {
@@ -35,6 +35,8 @@ const getProjectsByUserController = async (req, res) => {
 }
 
 const postProjectController = async (req, res) => {
+    const share_link = generateShareLink();
+    req.body.share_link = share_link;
     const { error } = PostProjectJoiSchema.validate(req.body);
     if (error) {
         return res.status(400).json({ error: error.details[0].message });

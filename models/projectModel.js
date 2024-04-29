@@ -8,6 +8,16 @@ mongoose.connect(process.env.MONGO_DB_CONNECT)
   .then(() => console.log('Connexion à MongoDB réussie !'))
   .catch((err) => console.log('Connexion à MongoDB échouée !', err));
 
+  
+const generateShareLink = () => {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let result = '';
+    for (let i = 0; i < 10; i++) {
+        result += characters.charAt(Math.floor(Math.random() * characters.length));
+    }
+    return result;
+}
+
 const getProjectByIDModel = async (id) => {
     try {
         const project = await Project.findById(id).exec();
@@ -70,6 +80,7 @@ const deleteProjectModel = async (id) => {
 };
 
 export {
+    generateShareLink,
     getProjectByIDModel,
     getProjectsModel,
     getProjectsByUserModel,
