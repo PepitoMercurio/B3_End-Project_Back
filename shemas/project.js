@@ -29,6 +29,8 @@ const PostProjectJoiSchema = Joi.object({
 });
 
 const PutProjectJoiSchema = Joi.object({
+    _id: Joi.string().min(1),
+    __v: Joi.number(),
     id_user: Joi.string().min(1),
     title: Joi.string().min(3).max(50),
     share_link: Joi.string().min(3),
