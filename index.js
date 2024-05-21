@@ -15,7 +15,7 @@ app.get('/', (req, res) => {
     res.send('<h1>Bienvenue sur l\' API</h1>');
 });
 
-app.post('/signin', postUserController);
+app.post('/register', postUserController);
 app.post('/login', loginController);
 
 app.get('/projects', getProjectsController);
