@@ -18,12 +18,12 @@ app.get('/', (req, res) => {
 app.post('/register', postUserController);
 app.post('/login', loginController);
 
-app.get('/projects', getProjectsController);
-app.get('/projects/:id', getProjectByIDController);
-app.get('/projects/user/:id_user', getProjectsByUserController);
-app.post('/projects', postProjectController);
-app.put('/projects/:id', updateProjectController);
-app.delete('/projects/:id', deleteProjectController);
+app.get('/projects', jwtVerify, getProjectsController);
+app.get('/projects/:id', jwtVerify, getProjectByIDController);
+app.get('/projects/user/:id_user', jwtVerify, getProjectsByUserController);
+app.post('/projects', jwtVerify, postProjectController);
+app.put('/projects/:id', jwtVerify, updateProjectController);
+app.delete('/projects/:id', jwtVerify, deleteProjectController);
 
 app.listen(3001, () => {
     console.log('Serveur démarré sur le port 3001');
